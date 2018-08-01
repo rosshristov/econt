@@ -5,6 +5,7 @@ use App;
 use DB;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
+use Rosshristov\Econt\Econt;
 use Rosshristov\Econt\Models\Neighbourhood;
 use Rosshristov\Econt\Models\Office;
 use Rosshristov\Econt\Models\Region;
@@ -37,7 +38,7 @@ class Sync extends Command
     public function handle()
     {
         $time = time();
-        DB::connection('econt')->disableQueryLog();
+        DB::connection('mysql')->disableQueryLog();
 
         $this->comment(PHP_EOL . 'Starting...');
 
@@ -46,12 +47,12 @@ class Sync extends Command
         Zone::whereRaw(1)->delete();
         Settlement::whereRaw(1)->delete();
 
-        foreach (App::make('Econt')->zones() as $zone) {
+        foreach (App::make(Econt::class)->zones() as $zone) {
             (new Zone)->import($zone);
 
             $zone_id = Arr::has($zone, 'id') ? Arr::get($zone, 'id') : 0;
 
-            foreach (App::make('Econt')->settlements($zone_id) as $settlement) {
+            foreach (App::make(Econt::class)->settlements($zone_id) as $settlement) {
                 if (!is_array($settlement)) {
                     continue;
                 }
@@ -66,7 +67,7 @@ class Sync extends Command
 
         Region::whereRaw(1)->delete();
 
-        foreach (App::make('Econt')->regions() as $region) {
+        foreach (App::make(Econt::class)->regions() as $region) {
             (new Region)->import($region);
         }
 
@@ -76,7 +77,7 @@ class Sync extends Command
 
         Neighbourhood::whereRaw(1)->delete();
 
-        foreach (App::make('Econt')->neighbourhoods() as $region) {
+        foreach (App::make(Econt::class)->neighbourhoods() as $region) {
             (new Neighbourhood)->import($region);
         }
 
@@ -86,7 +87,7 @@ class Sync extends Command
 
         Street::whereRaw(1)->delete();
 
-        foreach (App::make('Econt')->streets() as $region) {
+        foreach (App::make(Econt::class)->streets() as $region) {
             (new Street)->import($region);
         }
 
@@ -96,7 +97,7 @@ class Sync extends Command
 
         Office::whereRaw(1)->delete();
 
-        foreach (App::make('Econt')->offices() as $region) {
+        foreach (App::make(Econt::class)->offices() as $region) {
             (new Office)->import($region);
         }
 
