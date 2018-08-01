@@ -34,7 +34,7 @@ class WaybillController extends Controller
         $payment = $this->_payment();
         $services = $this->_services();
 
-        if (($username = Input::get('client.username')) && ($password = Input::get('client.password'))) {
+        if (($username = $this->request->get('client.username')) && ($password = $this->request->get('client.password'))) {
             App::make('Econt')->setCredentials($username, $password);
         }
 
@@ -45,7 +45,7 @@ class WaybillController extends Controller
         $instruction->type = Instruction::TYPE_RETURN;
         $instruction->delivery_fail_action = Instruction::FAIL_ACTION_RETURN_SENDER;
 
-        switch (Input::get('shipment.instruction_returns')) {
+        switch ($this->request->get('shipment.instruction_returns')) {
             case Shipment::RETURNS:
                 $instruction->reject_delivery_payment_side = Receiver::SIDE;
                 $instruction->reject_return_payment_side = Sender::SIDE;
@@ -62,8 +62,8 @@ class WaybillController extends Controller
                 break;
         }
 
-        $decline_delivery = Input::get('instructions.reject_delivery_payment_side');
-        $decline_returns = Input::get('instructions.reject_return_payment_side');
+        $decline_delivery = $this->request->get('instructions.reject_delivery_payment_side');
+        $decline_returns = $this->request->get('instructions.reject_return_payment_side');
 
         if ($decline_delivery && in_array($decline_delivery, [Sender::SIDE, Receiver::SIDE])) {
             $instruction->reject_delivery_payment_side = $decline_delivery;
@@ -87,7 +87,7 @@ class WaybillController extends Controller
         $payment = $this->_payment();
         $services = $this->_services();
 
-        if (($username = Input::get('client.username')) && ($password = Input::get('client.password'))) {
+        if (($username = $this->request->get('client.username')) && ($password = $this->request->get('client.password'))) {
             App::make('Econt')->setCredentials($username, $password);
         }
 
@@ -98,27 +98,27 @@ class WaybillController extends Controller
 
     protected function _sender()
     {
-        $settlement = Settlement::find((int)Input::get('sender.settlement'));
+        $settlement = Settlement::find((int)$this->request->get('sender.settlement'));
 
         $sender = new Sender;
-        $sender->name = Input::get('sender.name');
-        $sender->name_person = Input::get('sender.name_person');
+        $sender->name = $this->request->get('sender.name');
+        $sender->name_person = $this->request->get('sender.name_person');
         $sender->city = $settlement->name;
         $sender->post_code = $settlement->post_code;
-        $sender->phone_num = Input::get('sender.phone');
+        $sender->phone_num = $this->request->get('sender.phone');
 
-        switch (Input::get('sender.pickup')) {
+        switch ($this->request->get('sender.pickup')) {
             case 'address':
-                $sender->street = Street::find((int)Input::get('sender.street'))->name;
-                $sender->street_num = Input::get('sender.street_num');
-                $sender->street_vh = Input::get('sender.street_vh');
-                $sender->street_et = Input::get('sender.street_et');
-                $sender->street_ap = Input::get('sender.street_ap');
-                $sender->street_other = Input::get('sender.street_other');
+                $sender->street = Street::find((int)$this->request->get('sender.street'))->name;
+                $sender->street_num = $this->request->get('sender.street_num');
+                $sender->street_vh = $this->request->get('sender.street_vh');
+                $sender->street_et = $this->request->get('sender.street_et');
+                $sender->street_ap = $this->request->get('sender.street_ap');
+                $sender->street_other = $this->request->get('sender.street_other');
                 break;
 
             case 'office':
-                $sender->office_code = Office::find((int)Input::get('sender.office'))->code;
+                $sender->office_code = Office::find((int)$this->request->get('sender.office'))->code;
                 break;
         }
 
@@ -127,15 +127,15 @@ class WaybillController extends Controller
 
     protected function _senderCalc()
     {
-        $settlement = Settlement::find((int)Input::get('sender.settlement'));
+        $settlement = Settlement::find((int)$this->request->get('sender.settlement'));
 
         $sender = new Sender;
         $sender->city = $settlement->name;
         $sender->post_code = $settlement->post_code;
 
-        switch (Input::get('sender.pickup')) {
+        switch ($this->request->get('sender.pickup')) {
             case 'office':
-                $sender->office_code = Office::find((int)Input::get('sender.office'))->code;
+                $sender->office_code = Office::find((int)$this->request->get('sender.office'))->code;
                 break;
         }
 
@@ -144,26 +144,26 @@ class WaybillController extends Controller
 
     protected function _receiver()
     {
-        $settlement = Settlement::find((int)Input::get('receiver.settlement'));
+        $settlement = Settlement::find((int)$this->request->get('receiver.settlement'));
 
         $receiver = new Receiver;
-        $receiver->name = Input::get('receiver.name');
+        $receiver->name = $this->request->get('receiver.name');
         $receiver->city = $settlement->name;
         $receiver->post_code = $settlement->post_code;
-        $receiver->phone_num = Input::get('receiver.phone');
+        $receiver->phone_num = $this->request->get('receiver.phone');
 
-        switch (Input::get('receiver.pickup')) {
+        switch ($this->request->get('receiver.pickup')) {
             case 'address':
-                $receiver->street = Street::find((int)Input::get('receiver.street'))->name;
-                $receiver->street_num = Input::get('receiver.street_num');
-                $receiver->street_vh = Input::get('receiver.street_vh');
-                $receiver->street_et = Input::get('receiver.street_et');
-                $receiver->street_ap = Input::get('receiver.street_ap');
-                $receiver->street_other = Input::get('receiver.street_other');
+                $receiver->street = Street::find((int)$this->request->get('receiver.street'))->name;
+                $receiver->street_num = $this->request->get('receiver.street_num');
+                $receiver->street_vh = $this->request->get('receiver.street_vh');
+                $receiver->street_et = $this->request->get('receiver.street_et');
+                $receiver->street_ap = $this->request->get('receiver.street_ap');
+                $receiver->street_other = $this->request->get('receiver.street_other');
                 break;
 
             case 'office':
-                $receiver->office_code = Office::find((int)Input::get('receiver.office'))->code;
+                $receiver->office_code = Office::find((int)$this->request->get('receiver.office'))->code;
                 break;
         }
 
@@ -173,12 +173,12 @@ class WaybillController extends Controller
     protected function _receiverCalc()
     {
         $receiver = new Receiver;
-        $receiver->city = Input::get('receiver.settlement');
-        $receiver->post_code = Input::get('receiver.post_code');
+        $receiver->city = $this->request->get('receiver.settlement');
+        $receiver->post_code = $this->request->get('receiver.post_code');
 
-        switch (Input::get('receiver.pickup')) {
+        switch ($this->request->get('receiver.pickup')) {
             case 'office':
-                $receiver->office_code = Office::find((int)Input::get('receiver.office'))->code;
+                $receiver->office_code = Office::find((int)$this->request->get('receiver.office'))->code;
                 break;
         }
 
@@ -188,7 +188,7 @@ class WaybillController extends Controller
 
     protected function _shipment()
     {
-        $instruction_returns = Input::get('shipment.instruction_returns');
+        $instruction_returns = $this->request->get('shipment.instruction_returns');
 
         if (!in_array($instruction_returns, [Shipment::RETURNS, Shipment::SHIPPING_RETURNS])) {
             $instruction_returns = null;
@@ -196,26 +196,26 @@ class WaybillController extends Controller
 
         $shipment = new Shipment;
 
-        $shipment->envelope_num = Input::get('shipment.num');
-        $shipment->shipment_type = Input::get('shipment.type');
-        $shipment->description = Input::get('shipment.description');
-        $shipment->pack_count = (int)Input::get('shipment.count');
-        $shipment->weight = (float)Input::get('shipment.weight');
-        $shipment->pay_after_accept = (int)!!Input::get('shipment.pay_after_accept');
-        $shipment->pay_after_test = (int)!!Input::get('shipment.pay_after_test');
+        $shipment->envelope_num = $this->request->get('shipment.num');
+        $shipment->shipment_type = $this->request->get('shipment.type');
+        $shipment->description = $this->request->get('shipment.description');
+        $shipment->pack_count = (int)$this->request->get('shipment.count');
+        $shipment->weight = (float)$this->request->get('shipment.weight');
+        $shipment->pay_after_accept = (int)!!$this->request->get('shipment.pay_after_accept');
+        $shipment->pay_after_test = (int)!!$this->request->get('shipment.pay_after_test');
         $shipment->instruction_returns = $instruction_returns;
-        $shipment->invoice_before_pay_CD = (int)!!Input::get('shipment.invoice_before_pay');
+        $shipment->invoice_before_pay_CD = (int)!!$this->request->get('shipment.invoice_before_pay');
 
-        $shipment->setTrariffSubCode(Input::get('sender.pickup'), Input::get('receiver.pickup'));
+        $shipment->setTrariffSubCode($this->request->get('sender.pickup'), $this->request->get('receiver.pickup'));
 
         return $shipment;
     }
 
     protected function _courier(Shipment &$shipment)
     {
-        $date = Input::get('courier.date');
-        $from = Input::get('courier.time_from');
-        $to = Input::get('courier.time_to');
+        $date = $this->request->get('courier.date');
+        $from = $this->request->get('courier.time_from');
+        $to = $this->request->get('courier.time_to');
 
         if (!$date) {
             return null;
@@ -235,9 +235,9 @@ class WaybillController extends Controller
 
     protected function _payment()
     {
-        $side = Payment::RECEIVER === Input::get('payment.side') ? Payment::RECEIVER : Payment::SENDER;
+        $side = Payment::RECEIVER === $this->request->get('payment.side') ? Payment::RECEIVER : Payment::SENDER;
         $method = Payment::COD;
-        $key_word = Input::get('payment.credit');
+        $key_word = $this->request->get('payment.credit');
 
         if ($key_word && Payment::SENDER == $side) {
             $method = Payment::CREDIT;
@@ -250,12 +250,12 @@ class WaybillController extends Controller
 
     protected function _services()
     {
-        $dp = Input::get('services.dp');
-        $cd = (float)Input::get('services.cd');
-        $oc = (float)Input::get('services.oc');
-        $oc_currency = Input::get('services.oc_currency');
-        $cd_currency = Input::get('services.cd_currency');
-		$cd_agreement_num = Input::get('services.cd_agreement_num');
+        $dp = $this->request->get('services.dp');
+        $cd = (float)$this->request->get('services.cd');
+        $oc = (float)$this->request->get('services.oc');
+        $oc_currency = $this->request->get('services.oc_currency');
+        $cd_currency = $this->request->get('services.cd_currency');
+		$cd_agreement_num = $this->request->get('services.cd_agreement_num');
 
         $services = new Services;
         $services->dp = $dp ? 'ON' : null;

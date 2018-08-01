@@ -31,8 +31,8 @@ class OfficeController extends Controller
 
     public function autocomplete()
     {
-        $settlement = (int)Input::get('settlement');
-        $name = htmlentities(Input::get('query'), ENT_QUOTES, 'UTF-8', false);
+        $settlement = (int)$this->request->get('settlement');
+        $name = htmlentities($this->request->get('query'), ENT_QUOTES, 'UTF-8', false);
 
         if (0 >= $settlement) {
             return ['results' => [], 'more' => false];
@@ -52,8 +52,8 @@ class OfficeController extends Controller
 
     public function autocompleteBySettlementName()
     {
-        $settlement = htmlentities(Input::get('settlement'), ENT_QUOTES, 'UTF-8', false);
-        $name = htmlentities(Input::get('query'), ENT_QUOTES, 'UTF-8', false);
+        $settlement = htmlentities($this->request->get('settlement'), ENT_QUOTES, 'UTF-8', false);
+        $name = htmlentities($this->request->get('query'), ENT_QUOTES, 'UTF-8', false);
 
         $settlement = Settlement::where('name', 'LIKE', "$settlement%")->orWhere('name_en', 'LIKE', "$settlement%")->first();
 

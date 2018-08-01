@@ -19,8 +19,8 @@ class StreetController extends Controller
 
     public function autocomplete()
     {
-        $settlement = (int)Input::get('settlement');
-        $name = htmlentities(Input::get('query'), ENT_QUOTES, 'UTF-8', false);
+        $settlement = (int)$this->request->get('settlement');
+        $name = htmlentities($this->request->get('query'), ENT_QUOTES, 'UTF-8', false);
 
         if (0 >= $settlement || self::MIN_AUTOCOMPLETE_LENGTH > mb_strlen($name)) {
             return ['results' => [], 'more' => false];

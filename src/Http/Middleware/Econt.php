@@ -26,7 +26,7 @@ class Econt
      */
     public function handle(Request $request, Closure $next)
     {
-        $lang = Input::get('lang') ?: Config::get('app.locale');
+        $lang = $request->lang ?: Config::get('app.locale');
 
         if (!preg_match('#[a-z]{2}#', $lang)) {
             $lang = Config::get('app.locale');

@@ -29,8 +29,8 @@ class EcontController extends Controller
 
     public function profile()
     {
-        $username = Input::get('username');
-        $password = Input::get('password');
+        $username = $this->request->get('username');
+        $password = $this->request->get('password');
 
         Econt::setCredentials($username, $password);
         return Econt::profile();
@@ -38,8 +38,8 @@ class EcontController extends Controller
 
     public function company()
     {
-        $username = Input::get('username');
-        $password = Input::get('password');
+        $username = $this->request->get('username');
+        $password = $this->request->get('password');
 
         Econt::setCredentials($username, $password);
         return Econt::company();

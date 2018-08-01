@@ -47,7 +47,7 @@ class WaybillRequest extends Request {
             'shipment.weight' => 'required|numeric|min:0.001',
         ];
 
-        if(Input::get('courier.date')) {
+        if($this->request->get('courier.date')) {
             $rules['courier.date'] = 'date_format:Y-m-d';
             $rules['courier.time_from'] = 'required_with:courier.date|date_format:H:i';
             $rules['courier.time_to'] = 'required_with:courier.date|date_format:H:i';
