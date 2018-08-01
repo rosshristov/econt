@@ -28,7 +28,9 @@ class EcontServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([__DIR__ . '/../config/econt.php' => config_path('econt.php')], 'config');
-        $this->publishes([__DIR__ . '/../database/migrations/' => database_path('migrations')], 'migrations');
+
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+//        $this->publishes([__DIR__ . '/../database/migrations/' => database_path('migrations')], 'migrations');
 
         $this->mergeConfigFrom(__DIR__ . '/../config/econt.php', 'econt');
 
