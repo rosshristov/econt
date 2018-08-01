@@ -1,5 +1,5 @@
 <?php
-namespace Rolice\Econt\Exceptions;
+namespace Rosshristov\Econt\Exceptions;
 
 use Exception;
 

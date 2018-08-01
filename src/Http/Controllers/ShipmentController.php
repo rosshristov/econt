@@ -1,5 +1,5 @@
 <?php
-namespace Rolice\Econt\Http\Controllers;
+namespace Rosshristov\Econt\Http\Controllers;
 
 use App;
 use Lang;

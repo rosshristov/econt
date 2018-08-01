@@ -1,12 +1,12 @@
 <?php
-namespace Rolice\Econt;
+namespace Rosshristov\Econt;
 
-use Rolice\Econt\Exceptions\EcontException;
+use Rosshristov\Econt\Exceptions\EcontException;
 
 /**
  * Class Endpoint
  * Class with constants, providing end-point addresses to Econt services.
- * @package Rolice\Econt
+ * @package Rosshristov\Econt
  * @version 1.0
  * @access public
  */

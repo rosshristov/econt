@@ -1,10 +1,10 @@
 <?php
-namespace Rolice\Econt;
+namespace Rosshristov\Econt;
 
 /**
  * Interface ImportInterface
  * This interface provides common ground for models to implement import functionality for their given data-type
- * @package Rolice\Econt
+ * @package Rosshristov\Econt
  * @version 1.0
  */
 interface ImportInterface {

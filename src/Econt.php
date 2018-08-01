@@ -1,18 +1,18 @@
 <?php
-namespace Rolice\Econt;
+namespace Rosshristov\Econt;
 
 
 use App;
 use Config;
 use Exception;
-use Rolice\Econt\Components\ComponentInterface;
-use Rolice\Econt\Exceptions\EcontException;
+use Rosshristov\Econt\Components\ComponentInterface;
+use Rosshristov\Econt\Exceptions\EcontException;
 use SimpleXMLElement;
 
 /**
  * Class Econt
  * Interface exported by this package to allow Econt integration.
- * @package Rolice\Econt
+ * @package Rosshristov\Econt
  * @version 1.0
  * @access public
  */

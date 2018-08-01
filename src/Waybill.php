@@ -1,21 +1,21 @@
 <?php
-namespace Rolice\Econt;
+namespace Rosshristov\Econt;
 
 use App;
 
 use rest\server\user\Load;
-use Rolice\Econt\Components\Loading;
-use Rolice\Econt\Components\Sender;
-use Rolice\Econt\Components\Receiver;
-use Rolice\Econt\Components\Shipment;
-use Rolice\Econt\Components\Payment;
-use Rolice\Econt\Components\Services;
-use Rolice\Econt\Exceptions\EcontException;
+use Rosshristov\Econt\Components\Loading;
+use Rosshristov\Econt\Components\Sender;
+use Rosshristov\Econt\Components\Receiver;
+use Rosshristov\Econt\Components\Shipment;
+use Rosshristov\Econt\Components\Payment;
+use Rosshristov\Econt\Components\Services;
+use Rosshristov\Econt\Exceptions\EcontException;
 
 /**
  * Class Waybill
  * Interface exported by this package to allow creating/issuing new Econt waybills for printing.
- * @package Rolice\Econt
+ * @package Rosshristov\Econt
  * @version 1.0
  * @access public
  */

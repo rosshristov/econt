@@ -1,11 +1,11 @@
 <?php
-namespace Rolice\Econt\Models;
+namespace Rosshristov\Econt\Models;
 
 use Config;
 
 use Illuminate\Database\Eloquent\Model;
-use Rolice\Econt\Exceptions\EcontException;
-use Rolice\Econt\ImportInterface;
+use Rosshristov\Econt\Exceptions\EcontException;
+use Rosshristov\Econt\ImportInterface;
 
 class Region extends Model implements ImportInterface
 {

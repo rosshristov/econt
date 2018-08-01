@@ -1,13 +1,13 @@
 <?php
-namespace Rolice\Econt\Components;
+namespace Rosshristov\Econt\Components;
 
 use DateTime;
-use Rolice\Econt\Exceptions\EcontException;
+use Rosshristov\Econt\Exceptions\EcontException;
 
 /**
  * Class CourierRequest
  * Class representing courier request segment of loading request
- * @package Rolice\Econt\Component
+ * @package Rosshristov\Econt\Component
  * @version 1.0
  * @access public
  */

@@ -26,14 +26,14 @@
   },
   "autoload": {
     "psr-4": {
-      "Rolice\\Econt\\": "src",
-      "Rolice\\Econt\\Models\\": "src/Models/",
-      "Rolice\\Econt\\Commands\\": "src/Commands/",
-      "Rolice\\Econt\\Components\\": "src/Components/",
-      "Rolice\\Econt\\Exceptions\\": "src/Exceptions/"
+      "Rosshristov\\Econt\\": "src",
+      "Rosshristov\\Econt\\Models\\": "src/Models/",
+      "Rosshristov\\Econt\\Commands\\": "src/Commands/",
+      "Rosshristov\\Econt\\Components\\": "src/Components/",
+      "Rosshristov\\Econt\\Exceptions\\": "src/Exceptions/"
     }
   },
   "autoload-dev": {
-    "psr-4": { "Rolice\\Econt\\Test\\": "tests/" }
+    "psr-4": { "Rosshristov\\Econt\\Test\\": "tests/" }
   }
 }

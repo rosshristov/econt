@@ -1,11 +1,11 @@
 <?php
-namespace Rolice\Econt\Models;
+namespace Rosshristov\Econt\Models;
 
 use Config;
 
 use Illuminate\Database\Eloquent\Model;
-use Rolice\Econt\Exceptions\EcontException;
-use Rolice\Econt\ImportInterface;
+use Rosshristov\Econt\Exceptions\EcontException;
+use Rosshristov\Econt\ImportInterface;
 
 class Dispatching extends Model implements ImportInterface
 {
@@ -68,7 +68,7 @@ class Dispatching extends Model implements ImportInterface
     }
 
     public function settlement() {
-        return $this->belongsTo('Rolice\Econt\Models\Settlement');
+        return $this->belongsTo('Rosshristov\Econt\Models\Settlement');
     }
 
     public function validateImport(array $data)

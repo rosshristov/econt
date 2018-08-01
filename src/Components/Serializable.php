@@ -1,15 +1,15 @@
 <?php
-namespace Rolice\Econt\Components;
+namespace Rosshristov\Econt\Components;
 
 use ReflectionClass;
-use Rolice\Econt\Exceptions\EcontException;
+use Rosshristov\Econt\Exceptions\EcontException;
 use SimpleXMLElement;
-use Rolice\Econt\Components\ComponentInterface;
+use Rosshristov\Econt\Components\ComponentInterface;
 
 /**
  * Class Serializable
  * Trait providing, common, basic, uni-purpose serialization of ComponentInterface object to XML
- * @package Rolice\Econt\Components
+ * @package Rosshristov\Econt\Components
  * @verion 1.0
  */
 trait Serializable

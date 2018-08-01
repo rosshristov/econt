@@ -1,5 +1,5 @@
 <?php
-namespace Rolice\Econt\Helpers;
+namespace Rosshristov\Econt\Helpers;
 
 use App;
 

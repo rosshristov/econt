@@ -1,5 +1,5 @@
 <?php
-namespace Rolice\Econt\Http\Requests;
+namespace Rosshristov\Econt\Http\Requests;
 
 use Lang;
 use Input;

@@ -1,11 +1,11 @@
 <?php
-namespace Rolice\Econt\Http\Controllers;
+namespace Rosshristov\Econt\Http\Controllers;
 
 use App;
 use Input;
 
 use App\Http\Controllers\Controller;
-use Rolice\Econt\Models\Street;
+use Rosshristov\Econt\Models\Street;
 
 class StreetController extends Controller
 {

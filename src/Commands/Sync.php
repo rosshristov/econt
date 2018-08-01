@@ -1,16 +1,16 @@
 <?php
-namespace Rolice\Econt\Commands;
+namespace Rosshristov\Econt\Commands;
 
 use App;
 use DB;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
-use Rolice\Econt\Models\Neighbourhood;
-use Rolice\Econt\Models\Office;
-use Rolice\Econt\Models\Region;
-use Rolice\Econt\Models\Settlement;
-use Rolice\Econt\Models\Street;
-use Rolice\Econt\Models\Zone;
+use Rosshristov\Econt\Models\Neighbourhood;
+use Rosshristov\Econt\Models\Office;
+use Rosshristov\Econt\Models\Region;
+use Rosshristov\Econt\Models\Settlement;
+use Rosshristov\Econt\Models\Street;
+use Rosshristov\Econt\Models\Zone;
 
 class Sync extends Command
 {

@@ -1,13 +1,13 @@
 <?php
-namespace Rolice\Econt;
+namespace Rosshristov\Econt;
 
 use Illuminate\Support\ServiceProvider;
-use Rolice\Econt\Commands\Sync;
+use Rosshristov\Econt\Commands\Sync;
 
 /**
  * EcontServiceProvider for Laravel 5.1+
  *
- * @package    Rolice\Econt
+ * @package    Rosshristov\Econt
  * @version    1.0
  */
 class EcontServiceProvider extends ServiceProvider
