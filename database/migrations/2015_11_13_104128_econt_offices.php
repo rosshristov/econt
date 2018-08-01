@@ -19,7 +19,7 @@ class EcontOffices extends Migration
             $table->unsignedInteger('neighbourhood_id')->index('idx_neighbourhood_id')->nullable()->default(null);
             $table->string('name');
             $table->string('name_en');
-            $table->unsignedInteger('code')->unique('uk_code');
+            $table->unsignedInteger('code')->unique('uk_code')->nullable();
             $table->string('phone')->nullable()->default(null);
             $table->string('address');
             $table->string('address_en');
