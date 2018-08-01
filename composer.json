@@ -1,5 +1,5 @@
 {
-  "name": "rolice/econt",
+  "name": "rosshristov/econt",
   "description": "Econt courier API integration in composer package",
   "type": "library",
   "version": "1.0",
@@ -9,6 +9,10 @@
     {
       "name": "Lyubomir Gardev",
       "email": "rolice@intellisys.org"
+    },
+    {
+      "name": "Rosen Hristov",
+      "email": "rosshristov@gmail.com"
     }
   ],
   "require": {
