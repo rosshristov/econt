@@ -12,7 +12,7 @@ class EcontNeighbourhoods extends Migration
      */
     public function up()
     {
-        Schema::setConnection(DB::connection(Config::get('econt.connection')))->create('econt_neighbourhoods', function (Blueprint $table) {
+        Schema::create('econt_neighbourhoods', function (Blueprint $table) {
             $table->unsignedInteger('id');
             $table->unsignedInteger('city_id')->index('idx_city');
             $table->string('name');
@@ -32,6 +32,6 @@ class EcontNeighbourhoods extends Migration
      */
     public function down()
     {
-        Schema::setConnection(DB::connection(Config::get('econt.connection')))->dropIfExists('econt_neighbourhoods');
+        Schema::dropIfExists('econt_neighbourhoods');
     }
 }

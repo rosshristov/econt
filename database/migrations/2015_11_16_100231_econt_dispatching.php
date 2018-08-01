@@ -12,7 +12,7 @@ class EcontDispatching extends Migration
      */
     public function up()
     {
-        Schema::setConnection(DB::connection(Config::get('econt.connection')))->create('econt_dispatching', function (Blueprint $table) {
+        Schema::create('econt_dispatching', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('settlement_id');
             $table->enum('direction', ['from_door', 'to_door', 'from_office', 'to_office'])->index('idx_direction');
@@ -29,6 +29,6 @@ class EcontDispatching extends Migration
      */
     public function down()
     {
-        Schema::setConnection(DB::connection(Config::get('econt.connection')))->dropIfExists('econt_dispatching');
+        Schema::dropIfExists('econt_dispatching');
     }
 }

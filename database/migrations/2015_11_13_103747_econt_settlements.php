@@ -12,7 +12,7 @@ class EcontSettlements extends Migration
      */
     public function up()
     {
-        Schema::setConnection(DB::connection(Config::get('econt.connection')))->create('econt_settlements', function (Blueprint $table) {
+        Schema::create('econt_settlements', function (Blueprint $table) {
             $table->unsignedInteger('id');
             $table->unsignedInteger('zone_id')->index('idx_zone_id')->nullable()->default(null);
             $table->unsignedInteger('country_id')->index('idx_country_id')->nullable()->default(null);
@@ -59,6 +59,6 @@ class EcontSettlements extends Migration
      */
     public function down()
     {
-        Schema::setConnection(DB::connection(Config::get('econt.connection')))->dropIfExists('econt_settlements');
+        Schema::dropIfExists('econt_settlements');
     }
 }

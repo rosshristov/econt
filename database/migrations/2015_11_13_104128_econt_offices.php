@@ -12,7 +12,7 @@ class EcontOffices extends Migration
      */
     public function up()
     {
-        Schema::setConnection(DB::connection(Config::get('econt.connection')))->create('econt_offices', function (Blueprint $table) {
+        Schema::create('econt_offices', function (Blueprint $table) {
             $table->unsignedInteger('id');
             $table->unsignedInteger('city_id')->index('idx_city');
             $table->unsignedInteger('street_id')->index('idx_street_id')->nullable()->default(null);
@@ -52,6 +52,6 @@ class EcontOffices extends Migration
      */
     public function down()
     {
-        Schema::setConnection(DB::connection(Config::get('econt.connection')))->dropIfExists('econt_offices');
+        Schema::dropIfExists('econt_offices');
     }
 }
