@@ -54,7 +54,7 @@ class EcontServiceProvider extends ServiceProvider
             return new Sync;
         });
 
-        $this->commands('econt:sync');
+        $this->commands(Sync::class);
     }
 
     /**
