@@ -15,6 +15,12 @@
       "email": "rosshristov@gmail.com"
     }
   ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url":  "https://github.com/rosshristov/econt.git"
+    }
+  ],
   "require": {
     "php": ">=5.6.0",
     "ext-xml": "*",
