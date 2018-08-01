@@ -46,15 +46,15 @@ class EcontServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('Econt', function () {
+        $this->app->singleton(Econt::class, function () {
             return new Econt;
         });
 
-        $this->app['sync'] = $this->app->share(function ($app) {
+        $this->app['sync'] = $this->app->singleton(Sync::class, function() {
             return new Sync;
         });
 
-        $this->commands('sync');
+        $this->commands(Sync::class);
     }
 
     /**
