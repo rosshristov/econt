@@ -57,6 +57,11 @@ class Zone extends Model implements ImportInterface
         $this->setConnection(Config::get('econt.connection'));
     }
 
+    public function scopeBg($query)
+    {
+        return $query->where('national', 1);
+    }
+
     public function validateImport(array $data)
     {
         if (empty($data)) {
