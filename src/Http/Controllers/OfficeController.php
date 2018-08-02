@@ -26,7 +26,7 @@ class OfficeController extends Controller
 
     public function dropdown()
     {
-        return Office::orderBy(Locale::name())->lists('name', 'id');
+        return Office::orderBy(Locale::name())->pluck('name', 'id');
     }
 
     public function autocomplete()
