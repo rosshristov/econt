@@ -111,6 +111,11 @@ class Settlement extends Model implements ImportInterface
         return true;
     }
 
+    public function scopeBg($query)
+    {
+        return $query->where('country_id', 1033);
+    }
+
     public function import(array $data)
     {
         if (!$this->validateImport($data)) {
