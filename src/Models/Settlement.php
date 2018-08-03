@@ -1,4 +1,5 @@
 <?php
+
 namespace Rosshristov\Econt\Models;
 
 use App;
@@ -116,6 +117,11 @@ class Settlement extends Model implements ImportInterface
         return $query->where('country_id', 1033);
     }
 
+    public function getTextAttribute()
+    {
+        return '[' . $this->post_code . '] ' . $this->name . ' (' . $this->region . ')';
+    }
+
     public function import(array $data)
     {
         if (!$this->validateImport($data)) {
@@ -170,7 +176,7 @@ class Settlement extends Model implements ImportInterface
     public function getFormattedAttribute()
     {
         return Lang::get('econt::econt.settlement.type.' . $this->type)
-        . " {$this->{'bg' == App::getLocale() ? 'name' : 'name_en'}} ({$this->post_code})";
+            . " {$this->{'bg' == App::getLocale() ? 'name' : 'name_en'}} ({$this->post_code})";
     }
 
     public function getReferenceAttribute()
