@@ -44,8 +44,8 @@ class Sync extends Command
 
         $this->comment(PHP_EOL . 'Importing zones and settlements... Please wait.');
 
-        Zone::whereRaw(1)->delete();
-        Settlement::whereRaw(1)->delete();
+        Zone::truncate();
+        Settlement::truncate();
 
         foreach (App::make(Econt::class)->zones() as $zone) {
             (new Zone)->import($zone);
@@ -65,7 +65,7 @@ class Sync extends Command
 
         $this->comment(PHP_EOL . 'Importing regions... Please wait.');
 
-        Region::whereRaw(1)->delete();
+        Region::truncate();
 
         foreach (App::make(Econt::class)->regions() as $region) {
             (new Region)->import($region);
@@ -75,7 +75,7 @@ class Sync extends Command
 
         $this->comment(PHP_EOL . 'Importing neighbourhoods... Please wait.');
 
-        Neighbourhood::whereRaw(1)->delete();
+        Neighbourhood::truncate();
 
         foreach (App::make(Econt::class)->neighbourhoods() as $region) {
             (new Neighbourhood)->import($region);
@@ -85,7 +85,7 @@ class Sync extends Command
 
         $this->comment(PHP_EOL . 'Importing streets... Please wait.');
 
-        Street::whereRaw(1)->delete();
+        Street::truncate();
 
         foreach (App::make(Econt::class)->streets() as $region) {
             (new Street)->import($region);
@@ -95,7 +95,7 @@ class Sync extends Command
 
         $this->comment(PHP_EOL . 'Importing offices... Please wait.');
 
-        Office::whereRaw(1)->delete();
+        Office::truncate();
 
         foreach (App::make(Econt::class)->offices() as $region) {
             (new Office)->import($region);
