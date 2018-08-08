@@ -35,5 +35,12 @@
   },
   "autoload-dev": {
     "psr-4": { "Rosshristov\\Econt\\Test\\": "tests/" }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "\\Rosshristov\\Econt\\EcontServiceProvider"
+      ]
+    }
   }
 }
