@@ -4,9 +4,9 @@ namespace Rosshristov\Econt\Http\Requests;
 use Lang;
 use Input;
 use Config;
-use App\Http\Requests\Request;
+use Illuminate\Foundation\Http\FormRequest;
 
-class WaybillRequest extends Request {
+class WaybillRequest extends FormRequest {
 
     public function authorize()
     {

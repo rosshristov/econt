@@ -3,9 +3,9 @@ namespace Rosshristov\Econt\Http\Requests;
 
 use Lang;
 use Config;
-use App\Http\Requests\Request;
+use Illuminate\Foundation\Http\FormRequest;
 
-class CalculateRequest extends Request
+class CalculateRequest extends FormRequest
 {
 
     public function authorize()
