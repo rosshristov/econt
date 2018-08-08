@@ -14,6 +14,7 @@ use Rosshristov\Econt\Components\Receiver;
 use Rosshristov\Econt\Components\Sender;
 use Rosshristov\Econt\Components\Services;
 use Rosshristov\Econt\Components\Shipment;
+use Rosshristov\Econt\Econt;
 use Rosshristov\Econt\Exceptions\EcontException;
 use Rosshristov\Econt\Http\Requests\CalculateRequest;
 use Rosshristov\Econt\Http\Requests\WaybillRequest;
@@ -27,6 +28,7 @@ class WaybillController extends Controller
 
     public function issue(WaybillRequest $request)
     {
+        $this->request = $request;
         $sender = $this->_sender();
         $receiver = $this->_receiver();
         $shipment = $this->_shipment();
@@ -34,9 +36,7 @@ class WaybillController extends Controller
         $payment = $this->_payment();
         $services = $this->_services();
 
-        if (($username = $this->request->get('client.username')) && ($password = $this->request->get('client.password'))) {
-            App::make('Econt')->setCredentials($username, $password);
-        }
+        App::make(Econt::class)->setCredentials(config('econt.username'), config('econt.password'));
 
 
         $loading = new Loading($sender, $receiver, $shipment, $payment, $services, $courier);
