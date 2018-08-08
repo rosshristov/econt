@@ -35,7 +35,7 @@ class Waybill
             ],
         ];
 
-        $econt = App::make('Econt');
+        $econt = App::make(Econt::class);
         $waybill = $econt->request(RequestType::SHIPPING, $data, Endpoint::parcel());
 
         if(!isset($waybill['result']) || !isset($waybill['result']['e'])) {

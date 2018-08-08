@@ -36,7 +36,7 @@ class WaybillController extends Controller
         $payment = $this->_payment();
         $services = $this->_services();
 
-        App::make(Econt::class)->setCredentials(config('econt.username'), config('econt.password'));
+        App::make(Econt::class);
 
 
         $loading = new Loading($sender, $receiver, $shipment, $payment, $services, $courier);
@@ -87,9 +87,7 @@ class WaybillController extends Controller
         $payment = $this->_payment();
         $services = $this->_services();
 
-        if (($username = $this->request->input('client.username')) && ($password = $this->request->input('client.password'))) {
-            App::make('Econt')->setCredentials($username, $password);
-        }
+        App::make(Econt::class);
 
         $loading = new Loading($sender, $receiver, $shipment, $payment, $services);
 
