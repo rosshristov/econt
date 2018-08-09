@@ -17,10 +17,12 @@ class Sync extends Command
 {
     /**
      * The name and signature of the console command.
+     * Default import only BG stuff
+     * To import all, use "all" argument
      *
      * @var string
      */
-    protected $signature = 'econt:sync';
+    protected $signature = 'econt:sync {import=bg}';
 
     /**
      * The console command description.
@@ -38,6 +40,7 @@ class Sync extends Command
     public function handle()
     {
         $time = time();
+        $bgCities = [];
         DB::connection('mysql')->disableQueryLog();
 
         $this->comment(PHP_EOL . 'Starting...');
@@ -48,6 +51,10 @@ class Sync extends Command
         Settlement::truncate();
 
         foreach (App::make(Econt::class)->zones() as $zone) {
+            if ($this->argument('import') === 'bg' && $zone['national'] != 1) {
+                continue;
+            }
+
             (new Zone)->import($zone);
 
             $zone_id = Arr::has($zone, 'id') ? Arr::get($zone, 'id') : 0;
@@ -55,6 +62,10 @@ class Sync extends Command
             foreach (App::make(Econt::class)->settlements($zone_id) as $settlement) {
                 if (!is_array($settlement)) {
                     continue;
+                }
+
+                if ($settlement['country_id'] == 1033) {
+                    $bgCities[] = $settlement['id'];
                 }
 
                 (new Settlement)->import($settlement);
@@ -68,6 +79,10 @@ class Sync extends Command
         Region::truncate();
 
         foreach (App::make(Econt::class)->regions() as $region) {
+            if (($this->argument('import') === 'bg') && !in_array($region['city_id'], $bgCities)) {
+                continue;
+            }
+
             (new Region)->import($region);
         }
 
@@ -78,6 +93,11 @@ class Sync extends Command
         Neighbourhood::truncate();
 
         foreach (App::make(Econt::class)->neighbourhoods() as $region) {
+
+            if (($this->argument('import') === 'bg') && !in_array($region['city_id'], $bgCities)) {
+                continue;
+            }
+
             (new Neighbourhood)->import($region);
         }
 
@@ -88,6 +108,11 @@ class Sync extends Command
         Street::truncate();
 
         foreach (App::make(Econt::class)->streets() as $region) {
+
+            if (($this->argument('import') === 'bg') && !in_array($region['city_id'], $bgCities)) {
+                continue;
+            }
+
             (new Street)->import($region);
         }
 
@@ -98,6 +123,11 @@ class Sync extends Command
         Office::truncate();
 
         foreach (App::make(Econt::class)->offices() as $region) {
+
+            if (($this->argument('import') === 'bg') && !in_array($region['city_id'], $bgCities)) {
+                continue;
+            }
+
             (new Office)->import($region);
         }
 
