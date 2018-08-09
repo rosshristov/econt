@@ -64,7 +64,7 @@ class Sync extends Command
                     continue;
                 }
 
-                if (isset($settlement['country_id']) && $settlement['country_id'] == 1033) {
+                if ($settlement['id_country'] == 1033) {
                     $bgCities[] = $settlement['id'];
                 }
 
@@ -79,7 +79,7 @@ class Sync extends Command
         Region::truncate();
 
         foreach (App::make(Econt::class)->regions() as $region) {
-            if (($this->argument('import') === 'bg') && !in_array(($region['city_id'] ?? null), $bgCities)) {
+            if (($this->argument('import') === 'bg') && !in_array(($region['id_city'] ?? null), $bgCities)) {
                 continue;
             }
 
@@ -94,7 +94,7 @@ class Sync extends Command
 
         foreach (App::make(Econt::class)->neighbourhoods() as $region) {
 
-            if (($this->argument('import') === 'bg') && !in_array(($region['city_id'] ?? null), $bgCities)) {
+            if (($this->argument('import') === 'bg') && !in_array(($region['id_city'] ?? null), $bgCities)) {
                 continue;
             }
 
@@ -109,7 +109,7 @@ class Sync extends Command
 
         foreach (App::make(Econt::class)->streets() as $region) {
 
-            if (($this->argument('import') === 'bg') && !in_array(($region['city_id'] ?? null), $bgCities)) {
+            if (($this->argument('import') === 'bg') && !in_array(($region['id_city'] ?? null), $bgCities)) {
                 continue;
             }
 
@@ -124,7 +124,7 @@ class Sync extends Command
 
         foreach (App::make(Econt::class)->offices() as $region) {
 
-            if (($this->argument('import') === 'bg') && !in_array(($region['city_id'] ?? null), $bgCities)) {
+            if (($this->argument('import') === 'bg') && !in_array(($region['id_city'] ?? null), $bgCities)) {
                 continue;
             }
 
