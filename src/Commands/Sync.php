@@ -79,7 +79,7 @@ class Sync extends Command
         Region::truncate();
 
         foreach (App::make(Econt::class)->regions() as $region) {
-            if (($this->argument('import') === 'bg') && !in_array($region['city_id'], $bgCities)) {
+            if (($this->argument('import') === 'bg') && !in_array(($region['city_id'] ?? null), $bgCities)) {
                 continue;
             }
 
@@ -94,7 +94,7 @@ class Sync extends Command
 
         foreach (App::make(Econt::class)->neighbourhoods() as $region) {
 
-            if (($this->argument('import') === 'bg') && !in_array($region['city_id'], $bgCities)) {
+            if (($this->argument('import') === 'bg') && !in_array(($region['city_id'] ?? null), $bgCities)) {
                 continue;
             }
 
@@ -109,7 +109,7 @@ class Sync extends Command
 
         foreach (App::make(Econt::class)->streets() as $region) {
 
-            if (($this->argument('import') === 'bg') && !in_array($region['city_id'], $bgCities)) {
+            if (($this->argument('import') === 'bg') && !in_array(($region['city_id'] ?? null), $bgCities)) {
                 continue;
             }
 
@@ -124,7 +124,7 @@ class Sync extends Command
 
         foreach (App::make(Econt::class)->offices() as $region) {
 
-            if (($this->argument('import') === 'bg') && !in_array($region['city_id'], $bgCities)) {
+            if (($this->argument('import') === 'bg') && !in_array(($region['city_id'] ?? null), $bgCities)) {
                 continue;
             }
 
