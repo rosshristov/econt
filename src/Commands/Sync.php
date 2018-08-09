@@ -64,7 +64,7 @@ class Sync extends Command
                     continue;
                 }
 
-                if ($settlement['country_id'] == 1033) {
+                if (isset($settlement['country_id']) && $settlement['country_id'] == 1033) {
                     $bgCities[] = $settlement['id'];
                 }
 
