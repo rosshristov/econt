@@ -152,12 +152,7 @@ class WaybillController extends Controller
 
         switch ($this->request->input('receiver.pickup')) {
             case 'address':
-                $receiver->street = '';
-                $street = Street::find((int)$this->request->input('receiver.street'));
-                if ($street) {
-                    $receiver->street = $street->name;
-                }
-                $receiver->street_num = $this->request->input('receiver.street_num');
+                $receiver->street = Street::find((int)$this->request->input('receiver.street'))->name;
                 $receiver->street_vh = $this->request->input('receiver.street_vh');
                 $receiver->street_et = $this->request->input('receiver.street_et');
                 $receiver->street_ap = $this->request->input('receiver.street_ap');
