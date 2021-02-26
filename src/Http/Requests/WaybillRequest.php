@@ -37,7 +37,7 @@ class WaybillRequest extends FormRequest {
             'receiver.phone' => 'required',
             'receiver.settlement' => "required|integer|exists:$db.econt_settlements,id",
             'receiver.pickup' => 'required|in:address,office',
-            'receiver.street' => "required_if:receiver.pickup,address|exists:$db.econt_streets,id",
+//            'receiver.street' => "required_if:receiver.pickup,address|exists:$db.econt_streets,id",
             'receiver.office' => "required_if:receiver.pickup,office|exists:$db.econt_offices,id",
 
 //            'shipment.num' => 'required',

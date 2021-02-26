@@ -18,6 +18,7 @@ use Rosshristov\Econt\Econt;
 use Rosshristov\Econt\Exceptions\EcontException;
 use Rosshristov\Econt\Http\Requests\CalculateRequest;
 use Rosshristov\Econt\Http\Requests\WaybillRequest;
+use Rosshristov\Econt\Models\Neighbourhood;
 use Rosshristov\Econt\Models\Office;
 use Rosshristov\Econt\Models\Settlement;
 use Rosshristov\Econt\Models\Street;
@@ -152,11 +153,23 @@ class WaybillController extends Controller
 
         switch ($this->request->input('receiver.pickup')) {
             case 'address':
-                $receiver->street = Street::find((int)$this->request->input('receiver.street'))->name;
+                $street = Street::find((int)$this->request->input('receiver.street'));
+                $quarter = Neighbourhood::find((int)$this->request->input('receiver.quarter'));
+
+                $receiver->street_num = $this->request->input('receiver.street_num');
+                $receiver->street_bl = $this->request->input('receiver.street_bl');
                 $receiver->street_vh = $this->request->input('receiver.street_vh');
                 $receiver->street_et = $this->request->input('receiver.street_et');
                 $receiver->street_ap = $this->request->input('receiver.street_ap');
                 $receiver->street_other = $this->request->input('receiver.street_other');
+                $receiver->street = null;
+                if ($street) {
+                    $receiver->street = $street->name;
+                }
+                $receiver->quarter = null;
+                if ($quarter) {
+                    $receiver->quarter = $quarter->name;
+                }
                 break;
 
             case 'office':
